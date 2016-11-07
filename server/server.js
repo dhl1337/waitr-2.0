@@ -1,15 +1,15 @@
-var express = require('express'),
-  bodyParser = require('body-parser'),
-  cors = require('cors'),
-  mongoose = require('mongoose'),
-  jwt = require('jsonwebtoken'),
-  config = require('./config/config');
+import express from 'express';
+import cors from 'cors';
+import bodyParser from 'body-parser';
+import mongoose from 'mongoose';
+import jwt from 'jsonwebtoken';
+import config from './config/config';
 
-var port = 3000;
 
-var app = express();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
+const port = 3001;
+const app = express();
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -17,10 +17,17 @@ app.use(cors());
 app.use(express.static(__dirname + '/../www'));
 
 mongoose.connect(config.db);
-var db = mongoose.connection;
+const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error: '));
-db.once('open', function () {
-  console.log('Mongo connected at ' + config.db);
+db.once('open', () => console.log('Mongo connected at ' + config.db));
+
+io.on('connection', socket => {
+  socket.on('newPerson', function (data) {
+    io.emit('newPersonAdded', data);
+  });
+  socket.on('deletePerson', function (data) {
+    io.emit('deletedPerson', data);
+  });
 });
 
 var authorize = function (roles) {
@@ -46,19 +53,14 @@ app.get('/protected', authorize(['restaurant']), function (req, res) {
   res.status(200).json('Auth worked!');
 });
 
+// authentication route
 require('./authentication/AuthenticationRoute')(app);
+// restaurant route
 require('./restaurant/RestaurantRoute')(app);
+// user route
 require('./user/UserRoute')(app);
+// waitlist route
 require('./waitlist/WaitlistRoute')(app);
-
-io.on('connection', function (socket) {
-  socket.on('newPerson', function (data) {
-    io.emit('newPersonAdded', data);
-  });
-  socket.on('deletePerson', function (data) {
-    io.emit('deletedPerson', data);
-  });
-});
 
 http.listen(port, function () {
   console.log("listening on port ", port);

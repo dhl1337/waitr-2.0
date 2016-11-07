@@ -1,5 +1,5 @@
-var Waitlist = require('../models/WaitlistModel'),
-  User = require('../models/UserModel'),
+var Waitlist = require('../waitlist/WaitlistModel'),
+  User = require('../user/UserModel'),
   jwt = require('jsonwebtoken');
 
 module.exports = {

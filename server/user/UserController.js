@@ -1,4 +1,4 @@
-var User = require('../models/UserModel');
+var User = require('./UserModel');
 
 
 module.exports = {
