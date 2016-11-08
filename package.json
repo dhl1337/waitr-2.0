@@ -45,7 +45,7 @@
   "main": "gulpfile.js",
   "scripts": {
     "postinstall": "gulp Build",
-    "start": "nodemon server/server.js"
+    "start": "nodemon build/server/server.js"
   },
   "repository": {
     "type": "git",
