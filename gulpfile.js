@@ -13,12 +13,18 @@ var paths = {
   sass: ['./scss/**/*.scss']
 };
 
-gulp.task('default', ['server', 'sass']);
+gulp.task('default', ['server', 'www', 'sass']);
 
 gulp.task("server", function () {
   return gulp.src('./server/**/*.js')
     .pipe(babel({presets: ['es2015']}))
     .pipe(gulp.dest("./build/server"));
+});
+
+gulp.task('html', () => {
+  return gulp
+    .src('./www/**/*.html')
+    .pipe(gulp.dest('./build/public'))
 });
 
 gulp.task('sass', function(done) {
