@@ -7,15 +7,35 @@ var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
 var babel = require('gulp-babel');
+var inject = require('gulp-inject');
 
 var paths = {
   server: ['./server/**/*.js'],
   es6: ['./www/**/*.js'],
   sass: ['./scss/**/*.scss'],
   html: ['./www/**/*.html'],
+  javascript: ['./www/**/*.js', '!./www/js/app.js', '!./www/lib/**'],
+  css: ['./www/**/*.css','!./www/css/ionic.app*.css', '!./www/lib/**']
 };
 
-gulp.task('default', ['server', 'es6', 'sass', 'html']);
+gulp.task('index', function(){
+  return gulp.src('./www/index.html')
+    .pipe(inject(
+      gulp.src(paths.javascript,
+        {read: false}), {relative: true}))
+    .pipe(gulp.dest('./build/www'))
+    .pipe(inject(
+      gulp.src(paths.css,
+        {read: false}), {relative: true}))
+    .pipe(gulp.dest('./build/www'));
+});
+
+gulp.task('default', ['css', 'server', 'es6', 'sass', 'html', 'index']);
+
+gulp.task('css', () => {
+  return gulp.src('./www/css/**/*.css')
+    .pipe(gulp.dest('./build/www/css/'))
+});
 
 gulp.task("server", function () {
   return gulp.src('./server/**/*.js')
@@ -49,10 +69,12 @@ gulp.task('sass', function(done) {
 });
 
 gulp.task('watch', function() {
-  gulp.watch(paths.es6, ['server']);
+  gulp.watch(paths.server, ['server']);
   gulp.watch(paths.sass, ['sass']);
   gulp.watch(paths.html, ['html']);
   gulp.watch(paths.es6, ['es6']);
+  gulp.watch(paths.css, ['css']);
+  gulp.watch([paths.javascript, paths.css], ['index']);
 });
 
 gulp.task('install', ['git-check'], function() {
