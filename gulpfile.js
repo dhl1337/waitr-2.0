@@ -9,11 +9,13 @@ var sh = require('shelljs');
 var babel = require('gulp-babel');
 
 var paths = {
-  es6: ['./server/**/*.js'],
-  sass: ['./scss/**/*.scss']
+  server: ['./server/**/*.js'],
+  es6: ['./www/**/*.js'],
+  sass: ['./scss/**/*.scss'],
+  html: ['./www/**/*.html'],
 };
 
-gulp.task('default', ['server', 'www', 'sass']);
+gulp.task('default', ['server', 'es6', 'sass', 'html']);
 
 gulp.task("server", function () {
   return gulp.src('./server/**/*.js')
@@ -21,10 +23,16 @@ gulp.task("server", function () {
     .pipe(gulp.dest("./build/server"));
 });
 
+gulp.task('es6', () => {
+  return gulp.src('./www/**/*.js')
+    .pipe(babel({presets: ['es2015']}))
+    .pipe(gulp.dest('./build/www'))
+});
+
 gulp.task('html', () => {
   return gulp
     .src('./www/**/*.html')
-    .pipe(gulp.dest('./build/public'))
+    .pipe(gulp.dest('./build/www'))
 });
 
 gulp.task('sass', function(done) {
@@ -43,6 +51,8 @@ gulp.task('sass', function(done) {
 gulp.task('watch', function() {
   gulp.watch(paths.es6, ['server']);
   gulp.watch(paths.sass, ['sass']);
+  gulp.watch(paths.html, ['html']);
+  gulp.watch(paths.es6, ['es6']);
 });
 
 gulp.task('install', ['git-check'], function() {

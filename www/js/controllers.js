@@ -12,16 +12,16 @@ angular.module('starter.controllers', [])
   //});
 
   $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
+  $scope.remove = (chat) => {
     Chats.remove(chat);
   };
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
+.controller('ChatDetailCtrl', ($scope, $stateParams, Chats) => {
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('AccountCtrl', function($scope) {
+.controller('AccountCtrl', ($scope) => {
   $scope.settings = {
     enableFriends: true
   };
