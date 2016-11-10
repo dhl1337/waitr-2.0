@@ -15,8 +15,12 @@ var paths = {
   sass: ['./scss/**/*.scss'],
   html: ['./www/**/*.html'],
   javascript: ['./www/**/*.js', '!./www/js/app.js', '!./www/lib/**'],
-  css: ['./www/**/*.css','!./www/css/ionic.app*.css', '!./www/lib/**']
+  css: ['./www/**/*.css','!./www/css/ionic.app*.css', '!./www/lib/**'],
+  ionicCss: ['./www/lib/ionic/**/*.css'],
+  ionicFont: ['./www/lib/ionic/fonts/**/*.eot', './www/lib/ionic/fonts/**/*.svg', './www/lib/ionic/fonts/**/*.ttf', './www/lib/ionic/fonts/**/*.woff']
 };
+
+gulp.task('default', ['css', 'server', 'es6', 'sass', 'html', 'index', 'ionic-css', 'ionic-font', 'ionic-scss']);
 
 gulp.task('index', function(){
   return gulp.src('./www/index.html')
@@ -30,11 +34,24 @@ gulp.task('index', function(){
     .pipe(gulp.dest('./build/www'));
 });
 
-gulp.task('default', ['css', 'server', 'es6', 'sass', 'html', 'index']);
-
 gulp.task('css', () => {
   return gulp.src('./www/css/**/*.css')
     .pipe(gulp.dest('./build/www/css/'))
+});
+
+gulp.task('ionic-font', () => {
+  return gulp.src(['./www/lib/ionic/fonts/**/*.eot', './www/lib/ionic/fonts/**/*.svg', './www/lib/ionic/fonts/**/*.ttf', './www/lib/ionic/fonts/**/*.woff'])
+    .pipe(gulp.dest('./build/www/lib/ionic/fonts'))
+});
+
+gulp.task('ionic-scss', () => {
+  return gulp.src('./www/lib/ionic/**/*.scss')
+    .pipe(gulp.dest('./build/www/lib/ionic'))
+});
+
+gulp.task('ionic-css', () => {
+  return gulp.src('./www/lib/ionic/**/*.css')
+    .pipe(gulp.dest('./build/www/lib/ionic'))
 });
 
 gulp.task("server", function () {
@@ -59,12 +76,12 @@ gulp.task('sass', function(done) {
   gulp.src('./scss/ionic.app.scss')
     .pipe(sass())
     .on('error', sass.logError)
-    .pipe(gulp.dest('./www/css/'))
+    .pipe(gulp.dest('./build/www/css/'))
     .pipe(minifyCss({
       keepSpecialComments: 0
     }))
     .pipe(rename({ extname: '.min.css' }))
-    .pipe(gulp.dest('./www/css/'))
+    .pipe(gulp.dest('./build/www/css/'))
     .on('end', done);
 });
 
@@ -75,6 +92,9 @@ gulp.task('watch', function() {
   gulp.watch(paths.es6, ['es6']);
   gulp.watch(paths.css, ['css']);
   gulp.watch([paths.javascript, paths.css], ['index']);
+  gulp.watch(paths.ionicCss, ['ionicCss']);
+  gulp.watch(paths.ionicFont, ['ionicFont']);
+
 });
 
 gulp.task('install', ['git-check'], function() {
