@@ -20,7 +20,7 @@ var paths = {
   ionicFont: ['./www/lib/ionic/fonts/**/*.eot', './www/lib/ionic/fonts/**/*.svg', './www/lib/ionic/fonts/**/*.ttf', './www/lib/ionic/fonts/**/*.woff']
 };
 
-gulp.task('default', ['css', 'server', 'es6', 'sass', 'html', 'index', 'ionic-css', 'ionic-font', 'ionic-scss']);
+gulp.task('default', ['css', 'server', 'es6', 'sass', 'html', 'index', 'ionic-css', 'ionic-font', 'ionic-scss', 'img']);
 
 gulp.task('index', function(){
   return gulp.src('./www/index.html')
@@ -37,6 +37,11 @@ gulp.task('index', function(){
 gulp.task('css', () => {
   return gulp.src('./www/css/**/*.css')
     .pipe(gulp.dest('./build/www/css/'))
+});
+
+gulp.task('img', () => {
+  return gulp.src(['./www/img/**/*.png', './www/img/**/*.svg'])
+    .pipe(gulp.dest('./build/www/img/'))
 });
 
 gulp.task('ionic-font', () => {
