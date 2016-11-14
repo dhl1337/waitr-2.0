@@ -28,9 +28,9 @@
       })
       .state('restaurant-sign-up', {
         url: '/restaurant-registration',
-        templateUrl: 'app/registration/restReg.template.html',
-        controller: 'RegistrationCtrl',
-        controllerAs: 'regCtrl'
+        templateUrl: 'app/registration/templates/restaurant-registration.html',
+        controller: 'RegistrationController',
+        controllerAs: 'registration'
       })
       .state('auth-test', {
         url: '/auth-test',
