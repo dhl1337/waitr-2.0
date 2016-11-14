@@ -8,20 +8,20 @@
       <br>
     </div>
 
-    <form ng-submit="logCtrl.login(logCtrl.credentials)">
+    <form ng-submit="login.login(login.credentials)">
       <div class="list list-inset loginReg">
         <label class="item item-input">
           <i class="icon ion-ios-email placeholder-icon"></i>
-          <input type="email" placeholder="Email" autocapitalize="none" ng-model="logCtrl.credentials.email" autofocus="true">
-          <i class="ion-close" on-touch="logCtrl.credentials.email = ''" ng-show="logCtrl.credentials.email !== ''"></i>
+          <input type="email" placeholder="Email" autocapitalize="none" ng-model="login.credentials.email" autofocus="true">
+          <i class="ion-close" on-touch="login.credentials.email = ''" ng-show="login.credentials.email !== ''"></i>
         </label>
       </div>
 
       <div class="list list-inset loginReg">
         <label class="item item-input">
           <i class="icon ion-locked placeholder-icon"></i>
-          <input type="password" placeholder="Password" autocapitalize="none" ng-model="logCtrl.credentials.password">
-          <i class="ion-close" on-touch="logCtrl.credentials.password = ''" ng-show="logCtrl.credentials.password !== ''"></i>
+          <input type="password" placeholder="Password" autocapitalize="none" ng-model="login.credentials.password">
+          <i class="ion-close" on-touch="login.credentials.password = ''" ng-show="login.credentials.password !== ''"></i>
         </label>
       </div>
 

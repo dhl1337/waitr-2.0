@@ -32,11 +32,6 @@
         controller: 'RegistrationController',
         controllerAs: 'registration'
       })
-      .state('auth-test', {
-        url: '/auth-test',
-        templateUrl: 'app/login/authTest.template.html',
-        data: { authorizedRoles: [USER_ROLES.user] }
-      })
 
       // CUSTOMER ROUTES
       .state('customer', {  //parent, sidenav
