@@ -25,9 +25,10 @@ UserSchema.set('toObject', {
   }
 });
 
-UserSchema.methods.generateHash = password => bcrypt.hashSync(password, bcrypt.genSaltSync(8));
+UserSchema.methods.generateHash = (password) => bcrypt.hashSync(password, bcrypt.genSaltSync(8));
 
-
-UserSchema.methods.validPassword = password => bcrypt.compareSync(password, this.password);
+UserSchema.methods.validPassword = function(password) {
+  return bcrypt.compareSync(password, this.password)
+};
 
 module.exports = Mongoose.model('User', UserSchema);

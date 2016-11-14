@@ -1,6 +1,7 @@
 import Waitlist from '../waitlist/WaitlistModel';
 import User from '../user/UserModel';
 import jwt from 'jsonwebtoken';
+import config from '../config/config';
 
 module.exports = {
   register(req, res) {

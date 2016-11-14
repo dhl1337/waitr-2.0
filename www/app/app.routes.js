@@ -16,19 +16,19 @@
     // LOGIN - REGISTER ROUTES
       .state('login', {
         url: '/login',
-        templateUrl: 'app/login/templates/login.html',
+        templateUrl: 'app/login/login.html',
         controller: 'LoginController',
         controllerAs: 'login'
       })
       .state('customer-sign-up', {
         url: '/customer-registration',
-        templateUrl: 'app/registration/templates/customer-registration.html',
+        templateUrl: 'app/registration/customer-registration.html',
         controller: 'RegistrationController',
         controllerAs: 'registration'
       })
       .state('restaurant-sign-up', {
         url: '/restaurant-registration',
-        templateUrl: 'app/registration/templates/restaurant-registration.html',
+        templateUrl: 'app/registration/restaurant-registration.html',
         controller: 'RegistrationController',
         controllerAs: 'registration'
       })
@@ -37,9 +37,7 @@
       .state('customer', {  //parent, sidenav
         url: '/customer',
         abstract: true,
-        templateUrl: './app/customer/custCustomer.html',
-        controller: 'custCustomerCtrl',
-        controllerAs: 'ccc',
+        templateUrl: './app/customer/home/customer-home.html',
         resolve: {
           currentUser: function (authService, $state) {
             var user = authService.getUser();
@@ -52,9 +50,9 @@
       })
       .state('customer.home', {
         url: '/home',
-        templateUrl: './app/customer/home/custHome.html',
-        controller: 'custHomeCtrl',
-        controllerAs: 'chc'
+        templateUrl: './app/customer/home/customer-home.html',
+        controller: 'CustomerHomeController',
+        controllerAs: 'CustomerHomeCtrl'
       })
 
       //restaurant called at home, but not home child
