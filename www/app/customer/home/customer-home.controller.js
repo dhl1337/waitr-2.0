@@ -8,8 +8,8 @@
 
     chc.reverse = false;
 
-    restaurantService.getRestaurants()
-      .then(function (restaurant) {
+    restaurantService.getRestaurants().then(function (restaurant) {
+      console.log('rest', restaurant);
         $timeout(function() {
           chc.restaurantList = restaurant;
         }, 1000);

@@ -1,14 +1,18 @@
 <ion-tabs class="tabs-icon-top tabs-color-active-positive">
 
-  <!-- Restaurant Tab -->
-  <ion-tab title="Status" icon-off="icon ion-android-restaurant navIcon" icon-on="icon ion-android-restaurant navIcon" href="#/tab/dash">
-    <ion-nav-view name="tab-dash"></ion-nav-view>
+  <!-- Dashboard Tab -->
+  <ion-tab title="Status" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" ui-sref="customer.home">
+    <ion-nav-view name="customer-home"></ion-nav-view>
+  </ion-tab>
+
+  <!-- Chats Tab -->
+  <ion-tab title="Chats" icon-off="ion-ios-chatboxes-outline" icon-on="ion-ios-chatboxes" ui-sref="customer.settings">
+    <ion-nav-view name="customer-setting"></ion-nav-view>
   </ion-tab>
 
   <!-- Account Tab -->
   <ion-tab title="Account" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" href="#/tab/account">
     <ion-nav-view name="tab-account"></ion-nav-view>
   </ion-tab>
-
 
 </ion-tabs>
