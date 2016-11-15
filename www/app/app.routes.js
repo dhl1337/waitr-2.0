@@ -54,12 +54,13 @@
           }
         }
       })
-
       .state('customer.settings', {
         url: '/settings',
         views: {
           'customer-setting': {
-            templateUrl: './app/customer/setting/customer-setting.html'
+            templateUrl: './app/customer/setting/customer-setting.html',
+            controller: 'CustomerSettingController',
+            controllerAs: 'CustomerSettingCtrl'
           }
         }
       });
