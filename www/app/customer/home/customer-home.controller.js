@@ -1,18 +1,16 @@
 (function () {
+  'use strict';
   angular
     .module('waitrApp')
     .controller('CustomerHomeController', ['restaurantService', '$timeout', CustomerHomeController]);
 
   function CustomerHomeController(restaurantService, $timeout) {
-    var chc = this;
+    var vm = this;
 
-    chc.reverse = false;
+    vm.reverse = false;
 
-    restaurantService.getRestaurants().then(function (restaurant) {
-      console.log('rest', restaurant);
-        $timeout(function() {
-          chc.restaurantList = restaurant;
-        }, 1000);
+    restaurantService.getRestaurants().then(restaurant => {
+        $timeout(() => vm.restaurantList = restaurant, 1000);
       });
   }
 

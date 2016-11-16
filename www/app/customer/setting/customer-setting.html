@@ -1,6 +1,10 @@
 <ion-view>
   <ion-header-bar align-title="center" class="bar-positive">
-    <h1 class="title">Contact Info</h1>
+    <button class="button" ui-sref="customer.home">Cancel</button>
+    <h1 class="title">Edit Profile</h1>
+    <div class="buttons">
+      <button class="button" ng-click="CustomerSettingCtrl.updateUser()">Right Button</button>
+    </div>
   </ion-header-bar>
   <ion-content>
     <div class="list">
@@ -24,9 +28,6 @@
         <span class="input-label">Food Allergies</span>
         <input type="text" placeholder="Food Allergies" ng-model="foodAllergies">
       </label>
-    </div>
-    <div class="bar bar-footer">
-      <button class="button button-full button-positive" ng-click="CustomerSettingCtrl.updateUser(CustomerSettingCtrl.firstName, CustomerSettingCtrl.lastName, CustomerSettingCtrl.phone, CustomerSettingCtrl.email)">SAVE</button>
     </div>
   </ion-content>
 </ion-view>

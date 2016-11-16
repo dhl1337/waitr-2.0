@@ -12,16 +12,15 @@
     csc.phone = csc.currentUser.phone;
     csc.email = csc.currentUser.email;
 
-    csc.updateUser = function (firstName, lastName, phone, email) {
+    csc.updateUser = function () {
       var user = {
-        firstName: firstName,
-        lastName: lastName,
-        phone: phone,
-        email: email
+        firstName: csc.firstName,
+        lastName: csc.lastName,
+        phone: csc.phone,
+        email: csc.email
       };
       userService.updateUser(csc.currentUser._id, user).then(function(user) {
-        $scope.ccc.currentUser = user;
-        $state.go('customer.settings');
+        $state.go('customer.home');
       });
 
     };
