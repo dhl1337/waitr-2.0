@@ -1,27 +1,28 @@
 (function () {
+  'use strict';
   angular
     .module('waitrApp')
-    .controller('CustomerSettingController', ['userService', 'currentUser', '$state', '$timeout', '$scope', CustomerSettingController]);
+    .controller('CustomerSettingController', ['userService', 'currentUser', '$state', CustomerSettingController]);
 
-  function CustomerSettingController(userService, currentUser, $state, $timeout, $scope) {
-    var csc = this;
+  function CustomerSettingController(userService, currentUser, $state) {
 
-    csc.currentUser = currentUser;
-    csc.firstName = csc.currentUser.firstName;
-    csc.lastName = csc.currentUser.lastName;
-    csc.phone = csc.currentUser.phone;
-    csc.email = csc.currentUser.email;
+    var vm = this;
 
-    csc.updateUser = function () {
+    vm.firstName = currentUser.firstName;
+    vm.lastName = currentUser.lastName;
+    vm.phone = currentUser.phone;
+    vm.email = currentUser.email;
+
+    vm.updateUser = () => {
+
       var user = {
-        firstName: csc.firstName,
-        lastName: csc.lastName,
-        phone: csc.phone,
-        email: csc.email
+        firstName: vm.firstName,
+        lastName: vm.lastName,
+        phone: vm.phone,
+        email: vm.email
       };
-      userService.updateUser(csc.currentUser._id, user).then(function(user) {
-        $state.go('customer.home');
-      });
+
+      userService.updateUser(currentUser._id, user).then(() =>$state.go('customer.home'));
 
     };
 
