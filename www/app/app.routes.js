@@ -63,6 +63,16 @@
             controllerAs: 'CustomerSettingCtrl'
           }
         }
+      })
+      .state('customer.restaurant', {
+        url: '/home/restaurant/:restaurantId',
+        views: {
+          'customer-home': {
+            templateUrl: './app/customer/restaurant/customer-restaurant.html',
+            controller: 'custRestaurantCtrl',
+            controllerAs: 'crc'
+          }
+        }
       });
 
     $urlRouterProvider.otherwise('/login');
