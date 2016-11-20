@@ -73,6 +73,31 @@
             controllerAs: 'crc'
           }
         }
+      })
+      .state('restaurant', {
+        url: '/restaurant',
+        abstract: true,
+        templateUrl: './app/restaurant/restaRestaurant.html',
+        controller: 'restaRestaurantCtrl',
+        controllerAs: 'rrc',
+        resolve: {
+          restaurantInfo: function (authService, restaurantService, $state) {
+            var user = authService.getUser();
+            if (!user) {
+              return $state.go('login');
+            }
+            if (!user.restaurant_id) {
+              return $state.go('login');
+            }
+            return restaurantService.getCurrentRestaurant(user.restaurant_id)
+              .then(function (restaurant) {
+                return {
+                  currentUser: user,
+                  restaurant: restaurant
+                }
+              })
+          }
+        }
       });
 
     $urlRouterProvider.otherwise('/login');
