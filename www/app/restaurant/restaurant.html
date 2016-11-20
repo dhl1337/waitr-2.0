@@ -1,50 +1,13 @@
-<ion-side-menus>
-  <ion-side-menu-content id="navbar">
-    <ion-nav-bar class="bar-energized">
-      <ion-nav-back-button class="button-clear">
-        <i class="button-icon icon ion-ios-arrow-back"></i>
-      </ion-nav-back-button>
-      <ion-nav-buttons side="left">
-        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
-      </ion-nav-buttons>
-    </ion-nav-bar>
-    <ion-nav-view></ion-nav-view>
-  </ion-side-menu-content>
+<ion-tabs class="tabs-icon-top tabs-color-active-positive">
 
-  <ion-side-menu side="left">
-    <header class="bar bar-header">
-      <img id="sideMenuLogo"src="./img/logo2.svg" alt="" />
-      <h1 class="title">{{rrc.restaurant.restaurantName}}</h1>
-    </header>
+  <!-- Dashboard Tab -->
+  <ion-tab title="Status" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" ui-sref="customer.home">
+    <ion-nav-view name="customer-home"></ion-nav-view>
+  </ion-tab>
 
-    <ion-content class="has-header" id="resta-sideMenu">
-      <ion-list>
-        <ion-item class="navLine" id="menuItem" nav-clear menu-close ui-sref='restaurant.home'>
-          <i class="icon ion-ios-timer-outline navIcon"></i>
-          <span class="navTitle">WAIT LIST</span>
-        </ion-item>
+  <!-- Account Tab -->
+  <ion-tab title="Account" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" ui-sref="customer.settings">
+    <ion-nav-view name="customer-setting"></ion-nav-view>
+  </ion-tab>
 
-        <ion-item class="navLine" id="menuItem" nav-clear menu-close ui-sref='restaurant.profile'>
-          <i class="icon ion-person navIcon"></i>
-          <span class="navTitle">PROFILE</span>
-        </ion-item>
-        <!--<ion-item class="navLine" id="menuItem" nav-clear menu-close>-->
-        <!--<i class="icon ion-ios-chatbubble navIcon"></i>-->
-        <!--<span class="navTitle">REVIEWS</span>-->
-        <!--</ion-item>-->
-        <ion-item class="navLine" id="menuItem" nav-clear menu-close ui-sref="restaurant.settings">
-          <i class="icon ion-gear-b navIcon"></i>
-          <span class="navTitle">SETTINGS</span>
-        </ion-item>
-      </ion-list>
-    </ion-content>
-
-    <ion-footer-bar>
-      <ion-item class="navLine" id="menuItemFooter" nav-clear menu-close class="sideMenuItem" ng-click="ac.logout()" ui-sref="login">
-        <i class="icon ion-log-out navIcon"></i>
-        <span class="navTitle">LOG OUT</span>
-      </ion-item>
-    </ion-footer-bar>
-
-  </ion-side-menu>
-</ion-side-menus>
+</ion-tabs>
