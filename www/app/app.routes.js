@@ -77,7 +77,7 @@
       .state('restaurant', {
         url: '/restaurant',
         abstract: true,
-        templateUrl: './app/restaurant/restaRestaurant.html',
+        templateUrl: './app/restaurant/restaurant.html',
         controller: 'restaRestaurantCtrl',
         controllerAs: 'rrc',
         resolve: {
@@ -98,6 +98,12 @@
               })
           }
         }
+      })
+      .state('restaurant.home', {
+        url: '/home',
+        templateUrl: './app/restaurant/home/restaurant-home.html',
+        controller: 'restaHomeCtrl',
+        controllerAs: 'rhc'
       });
 
     $urlRouterProvider.otherwise('/login');
