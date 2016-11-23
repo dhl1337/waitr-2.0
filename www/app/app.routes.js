@@ -104,6 +104,12 @@
         templateUrl: './app/restaurant/home/restaurant-home.html',
         controller: 'restaHomeCtrl',
         controllerAs: 'rhc'
+      })
+      .state('restaurant.settings', {
+        url: '/settings',
+        templateUrl: './app/restaurant/settings/restaurant-setting.html',
+        controller: 'restaSettingsCtrl',
+        controllerAs: 'rsc'
       });
 
     $urlRouterProvider.otherwise('/login');
