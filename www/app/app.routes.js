@@ -101,9 +101,13 @@
       })
       .state('restaurant.home', {
         url: '/home',
-        templateUrl: './app/restaurant/home/restaurant-home.html',
-        controller: 'restaHomeCtrl',
-        controllerAs: 'rhc'
+        views: {
+          'restaurant-home': {
+            templateUrl: './app/restaurant/home/restaurant-home.html',
+            controller: 'restaHomeCtrl',
+            controllerAs: 'rhc'
+          }
+        }
       })
       .state('restaurant.settings', {
         url: '/settings',

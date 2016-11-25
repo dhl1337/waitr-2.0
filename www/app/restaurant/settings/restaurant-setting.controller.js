@@ -23,28 +23,27 @@
 
   function restaSettingsCtrl(restaurantService, $scope, $filter) {
 
-    var rsc = this;
-    rsc.currentUserID = $scope.rrc.currentUser.restaurant_id;
-    rsc.restaurant = $scope.rrc.restaurant;
+    var vm = this;
 
-    rsc.restaurant.hours.monday.openTime = new Date(rsc.restaurant.hours.monday.openTime);
-    rsc.restaurant.hours.monday.closeTime = new Date(rsc.restaurant.hours.monday.closeTime);
-    rsc.restaurant.hours.tuesday.openTime = new Date(rsc.restaurant.hours.tuesday.openTime);
-    rsc.restaurant.hours.tuesday.closeTime = new Date(rsc.restaurant.hours.tuesday.closeTime);
-    rsc.restaurant.hours.wednesday.openTime = new Date(rsc.restaurant.hours.wednesday.openTime);
-    rsc.restaurant.hours.wednesday.closeTime = new Date(rsc.restaurant.hours.wednesday.closeTime);
-    rsc.restaurant.hours.thursday.openTime = new Date(rsc.restaurant.hours.thursday.openTime);
-    rsc.restaurant.hours.thursday.closeTime = new Date(rsc.restaurant.hours.thursday.closeTime);
-    rsc.restaurant.hours.friday.openTime = new Date(rsc.restaurant.hours.friday.openTime);
-    rsc.restaurant.hours.friday.closeTime = new Date(rsc.restaurant.hours.friday.closeTime);
-    rsc.restaurant.hours.saturday.openTime = new Date(rsc.restaurant.hours.saturday.openTime);
-    rsc.restaurant.hours.saturday.closeTime = new Date(rsc.restaurant.hours.saturday.closeTime);
-    rsc.restaurant.hours.sunday.openTime = new Date(rsc.restaurant.hours.sunday.openTime);
-    rsc.restaurant.hours.sunday.closeTime = new Date(rsc.restaurant.hours.sunday.closeTime);
+    vm.currentUserID = $scope.rrc.currentUser.restaurant_id;
+    vm.restaurant = $scope.rrc.restaurant;
 
-    rsc.updateRestaurant = function (restaurant) {
-      restaurantService.updateRestaurant(rsc.restaurant._id, restaurant);
-    };
+    vm.restaurant.hours.monday.openTime = new Date(vm.restaurant.hours.monday.openTime);
+    vm.restaurant.hours.monday.closeTime = new Date(vm.restaurant.hours.monday.closeTime);
+    vm.restaurant.hours.tuesday.openTime = new Date(vm.restaurant.hours.tuesday.openTime);
+    vm.restaurant.hours.tuesday.closeTime = new Date(vm.restaurant.hours.tuesday.closeTime);
+    vm.restaurant.hours.wednesday.openTime = new Date(vm.restaurant.hours.wednesday.openTime);
+    vm.restaurant.hours.wednesday.closeTime = new Date(vm.restaurant.hours.wednesday.closeTime);
+    vm.restaurant.hours.thursday.openTime = new Date(vm.restaurant.hours.thursday.openTime);
+    vm.restaurant.hours.thursday.closeTime = new Date(vm.restaurant.hours.thursday.closeTime);
+    vm.restaurant.hours.friday.openTime = new Date(vm.restaurant.hours.friday.openTime);
+    vm.restaurant.hours.friday.closeTime = new Date(vm.restaurant.hours.friday.closeTime);
+    vm.restaurant.hours.saturday.openTime = new Date(vm.restaurant.hours.saturday.openTime);
+    vm.restaurant.hours.saturday.closeTime = new Date(vm.restaurant.hours.saturday.closeTime);
+    vm.restaurant.hours.sunday.openTime = new Date(vm.restaurant.hours.sunday.openTime);
+    vm.restaurant.hours.sunday.closeTime = new Date(vm.restaurant.hours.sunday.closeTime);
+
+    vm.updateRestaurant = restaurant => restaurantService.updateRestaurant(vm.restaurant._id, restaurant);
 
   }
 })();
